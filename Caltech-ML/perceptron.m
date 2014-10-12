@@ -11,7 +11,6 @@ if (errors > 0)
    for  i = 1 : size(X,1) 
       if diff(i)
          error++;
-
          if (error == selected_error)
              w = w + X(i, :) * Y(i);  
          end
