@@ -2,7 +2,7 @@ function [w, errors] = perceptron(X,Y,w_init)
 
 w = w_init;
 diff = sign(X * w') ~= Y;
-errors = sum(diff(:)!=0);
+errors = sum(diff(:)~=0);
 
 if (errors > 0)
    selected_error = randperm(errors, 1);
@@ -10,7 +10,7 @@ if (errors > 0)
    error = 0;
    for  i = 1 : size(X,1) 
       if diff(i)
-         error++;
+         error = error + 1;
          if (error == selected_error)
              w = w + X(i, :) * Y(i);  
          end
