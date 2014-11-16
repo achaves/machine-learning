@@ -3,12 +3,10 @@ clear all ;
 N = input( 'Enter no. of training points N : ' ) ;
 
 
-[x_axis, y_axis, minus_one, plus_one, alpha] = generate_data(N);
+[X, Y, alpha] = generate_data(N);
 
 % run the logistic regression algorithm to calculate the line
-X = [ones(1, N)', x_axis, y_axis];
-Y = (minus_one .+ plus_one);
-
+X = [ones(1, N)', X];
 
 total_w = zeros(size(X, 2), 1);
 total_iter = 0;
@@ -42,18 +40,9 @@ for run = 1 : 100
     total_iter += iter;
     
     % get 1000 uniform random points on the interval [ -1 1 ] x [ -1 1 ]
-    x_test = ( rand( 1000 , 1 ) .- 0.5 ) .* 2 ; 
-    y_test = ( rand( 1000 , 1 ) .- 0.5 ) .* 2 ;
-
-    % calculate f for new points
-    yEst_f = alpha(1) .* x_test .+ alpha(2) ;
-
-    % compute f for new points - above line = +1 and below = -1
-    plus_one_f = ( y_test >= yEst_f );
-    minus_one_f = ( y_test < yEst_f ) .* -1 ; 
+    [XTest, YTest] = generate_data_with_line(1000, alpha);
     
-    XTest = [ones(1, 1000)', x_test, y_test];
-    YTest = (minus_one_f .+ plus_one_f);
+    XTest = [ones(1, 1000)', XTest];
     
     % y = [1000 X 1]
     % w = [3 X 1]

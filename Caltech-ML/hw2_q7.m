@@ -3,11 +3,10 @@ clear all ;
 N = input( 'Enter no. of training points N : ' ) ;
 runs = input( 'Enter no. of runs for PLA : ' ) ;
 
-[x_axis, y_axis, minus_one, plus_one, alpha] = generate_data(N);
+[X, Y, alpha] = generate_data(N);
 
 % run the linear regression algorithm to calculate the line
-X = [ones(1, N)', x_axis, y_axis];
-Y = (minus_one .+ plus_one);
+X = [ones(1, N)', X];
 
 [w, errors] = linear_regression(X, Y);
 w = w';

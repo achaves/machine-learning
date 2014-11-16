@@ -1,4 +1,4 @@
-function [X, Y, alpha] = generate_data(N)
+function [x_axis, y_axis, minus_one, plus_one, alpha] = generate_data(N)
 
 % get N uniform random points on the interval [ -1 1 ] x [ -1 1 ]
 x_axis = ( rand( N , 1 ) - 0.5 ) .* 2 ; 
@@ -29,7 +29,5 @@ plus_one = ( y_axis >= yEst );
 minus_one = ( y_axis < yEst ) .* -1 ; 
 
 % classification labels
-Y = plus_one + minus_one ;
-
-X = [x_axis y_axis];
+labels = plus_one + minus_one ;
 
